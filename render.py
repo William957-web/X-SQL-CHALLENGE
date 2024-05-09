@@ -90,7 +90,7 @@ def download_database():
         flash('Login First', 'error')
         return render_template('login.html')
     else:
-        return redirect('/login')
+        return send_file(PRODUCT_DATABASE, as_attachment=True)
 
 @app.route('/upload_database', methods=['POST'])
 def upload_database():
