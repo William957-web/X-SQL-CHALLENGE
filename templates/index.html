@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQL Playground</title>
+    <style>body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    .navbar {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+    
+    .navbar .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .navbar-brand a,
+    .navbar-links a {
+        color: #fff;
+        text-decoration: none;
+        margin-right: 20px;
+    }
+    
+    .navbar-links form {
+        display: inline-block;
+    }
+    
+    .flash-messages {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .flash-messages li {
+        color: red;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #333;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+    }
+    
+    .product-card {
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+    
+    .product-card img {
+        max-width: 100%;
+        height: auto;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a href="/">SQL Playground</a>
+            </div>
+            <div class="navbar-links">
+                {% if session.logged_in %}
+                    <span>Welcome, {{ session.username }}!</span>
+                    <a href="/logout">Logout</a>
+                {% else %}
+                    <a href="/login">Login</a>
+                {% endif %}
+                <a href="/download_database">Download Database</a>
+                <form action="/upload_database" method="post" enctype="multipart/form-data">
+                    <input type="file" name="database" id="database" accept=".sqlite">
+                    <button type="submit">Upload Database</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>SQL Playground</h1>
+        <div class="product-grid">
+            {% for key, product in products %}
+                <div class="product-card">
+                    <h2>{{ product['name'] }}</h2>
+                    <p>{{ product['description'] }}</p>
+                    <p>Price: ${{ product['price'] }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
