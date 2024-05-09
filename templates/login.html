@@ -150,17 +150,7 @@
                 },
                 body: JSON.stringify(jsonData)
             })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    document.getElementById("messages").innerHTML = "<div class='error-message'>Login Failed</div>";
-                } else {
-                    window.location.href = "/"; // Redirect to home page on successful login
-                }
-            })
-            .catch(error => {
-                console.error("Error:", error);
-            });
+            .then(location.href='/login');
         });
     </script>
 </body>
