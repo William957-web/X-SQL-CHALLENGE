@@ -63,6 +63,8 @@ def login():
             return redirect(url_for('index'))
         else:
             flash('用戶名或密碼錯誤', 'error')
+            return render_template('login.html')
+
     else:
         if 'logged_in' not in session:
             return render_template('login.html')
