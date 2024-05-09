@@ -7,5 +7,6 @@ WORKDIR /app
 COPY . /app
 RUN rm /app/Dockerfile
 RUN chmod 777 /app
+RUN python3 generator.py
 ENTRYPOINT [ "python3" ]
 CMD ["render.py" ]
