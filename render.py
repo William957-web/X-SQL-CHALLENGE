@@ -59,10 +59,10 @@ def login():
         if user:
             session['logged_in'] = True
             session['username'] = username
-            flash('登入成功！', 'success')
+            flash('Login success', 'success')
             return redirect(url_for('index'))
         else:
-            flash('用戶名或密碼錯誤', 'error')
+            flash('username or password incorrect', 'error')
             return render_template('login.html')
 
     else:
